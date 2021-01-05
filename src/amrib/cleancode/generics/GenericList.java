@@ -2,9 +2,6 @@ package amrib.cleancode.generics;
 
 public class GenericList<T> {
 
-	/**
-	 * T could not be a primitive type but wrapper or object.
-	 */
 	private T[] items = (T[]) new Object[10];
 	private int count;
 
