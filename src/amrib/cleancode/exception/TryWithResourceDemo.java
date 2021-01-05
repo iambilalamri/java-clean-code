@@ -12,7 +12,6 @@ public class TryWithResourceDemo {
 			while ((i = reader.read()) != -1)
 				System.out.print((char) i);
 		} catch (IOException e) {
-			// TODO: handle exception
 			System.out.println("Could not read data.");
 		}
 	}

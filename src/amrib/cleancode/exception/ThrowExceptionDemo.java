@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class ThrowExceptionDemo {
 
+	private static float balance = 1000;
+
 	public static void deposit(float value) {
 		if (value <= 0) {
 			throw new IllegalArgumentException();
@@ -22,10 +24,20 @@ public class ThrowExceptionDemo {
 		}
 	}
 
+	public static void refund(float value) throws InsufficientFundsException {
+		if (value > balance)
+			throw new InsufficientFundsException();
+	}
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		// deposit(-1);
-		withDraw(10000000);
+		// withDraw(10000000);
+		try {
+			refund(1000000);
+		} catch (InsufficientFundsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
