@@ -42,9 +42,9 @@ public class Main {
 		Utils.print(2, 12);
 
 		System.out.println("*******************");
-		GenericList<Instructor> instructor = new GenericList<Instructor>();
+		GenericList<Instructor> instructor = new GenericList<>();
 		GenericList<User> user = new GenericList<User>();
-		Utils.printUsers(instructor);
+		// Utils.printUsers(instructor);
 	}
 
 }
