@@ -1,7 +1,8 @@
 package amrib.cleancode.generics;
 
 public class GenericList<T> {
-
+	// T extends Number
+	// & Cloneable
 	private T[] items = (T[]) new Object[10];
 	private int count;
 
