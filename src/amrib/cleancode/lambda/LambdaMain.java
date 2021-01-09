@@ -2,11 +2,13 @@ package amrib.cleancode.lambda;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.DoubleSupplier;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public class LambdaMain {
 
@@ -20,6 +22,37 @@ public class LambdaMain {
 		function1();
 		System.out.println();
 		function2();
+		System.out.println();
+		binaryOperator();
+		System.out.println();
+		unaryOperator();
+	}
+
+	/**
+	 * Les opérateurs unaires Java sont les types qui n'ont besoin que d'un seul
+	 * opérande pour effectuer toute opération comme l'incrémentation, la
+	 * décrémentation, la négation
+	 */
+	public static void unaryOperator() {
+		UnaryOperator<Integer> increment = n -> n + 1;
+		UnaryOperator<Integer> square = n -> n * n;
+
+		Integer result = increment.andThen(square).apply(2);
+		System.out.println(result);
+	}
+
+	public static void binaryOperator() {
+		BinaryOperator<Integer> add = (a, b) -> a + b;
+		Integer addResult = add.apply(5, 1);
+		System.out.println(addResult);
+
+		BinaryOperator<Integer> multi = (a, b) -> a * b;
+		Integer multiResult = multi.apply(9, 4);
+		System.out.println(multiResult);
+
+		Function<Integer, Integer> square = a -> a * a;
+		Integer result = add.andThen(square).apply(2, 3);
+		System.out.println(result);
 	}
 
 	public static void predicate2() {
