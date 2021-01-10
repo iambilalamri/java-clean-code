@@ -2,6 +2,7 @@ package amrib.cleancode.streams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -16,9 +17,25 @@ public class StreamMain {
 		flatMapStream();
 		System.out.println("***********");
 		filterStream();
+		System.out.println("***********");
+		sortingStream();
+	}
+
+	private static void peekingElement() {
+	}
+
+	private static void uniqueElement() {
+		var movieList = List.of(new Movie("a", 10), new Movie("a", 10), new Movie("b", 20), new Movie("c", 30));
+		movieList.stream().map(Movie::getLikes).distinct().forEach(like -> System.out.println(like));
+
 	}
 
 	private static void sortingStream() {
+		var movieList = List.of(new Movie("b", 10), new Movie("a", 30), new Movie("c", 20));
+		movieList.stream().sorted((a, b) -> a.getTitle().compareTo(b.getTitle()))
+				.forEach(m -> System.out.println(m.getTitle()));
+		// .sorted(Comparator.comparing(Movie::getTitle))
+		// .sorted()
 
 	}
 
