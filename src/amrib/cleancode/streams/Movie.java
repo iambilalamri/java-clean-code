@@ -14,4 +14,8 @@ public class Movie {
 		return likes;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
 }
