@@ -22,6 +22,12 @@ public class StreamReducersMain {
 		var moviesSetUniq = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
 		var moviesCounting = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.counting())); // {THRILLER=1,
 																														// ACTION=2}
+		var moviesGrouping = movieList.stream().collect(
+				Collectors.groupingBy(Movie::getGenre, Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
+
+		var moviesPartitionning1 = movieList.stream().collect(Collectors.partitioningBy(m -> m.getLikes() > 20));
+		var moviesPartitionning2 = movieList.stream().collect(Collectors.partitioningBy(m -> m.getLikes() > 20,
+				Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
 
 	}
 
