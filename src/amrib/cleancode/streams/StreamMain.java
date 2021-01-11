@@ -24,19 +24,22 @@ public class StreamMain {
 	// ############_MANAGE_STREAMS_####################
 
 	private static void peekingElement() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 		movieList.stream().filter(m -> m.getLikes() > 10).peek(m -> System.out.println("filtered:" + m.getTitle()))
 				.map(m -> m.getTitle()).peek(t -> System.out.println("Mapped:" + t)).forEach(System.out::println);
 	}
 
 	private static void uniqueElement() {
-		var movieList = List.of(new Movie("a", 10), new Movie("a", 10), new Movie("b", 20), new Movie("c", 30));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("a", 10, Genre.THRILLER),
+				new Movie("b", 20, Genre.THRILLER), new Movie("c", 30, Genre.THRILLER));
 		movieList.stream().map(Movie::getLikes).distinct().forEach(like -> System.out.println(like));
 
 	}
 
 	private static void sortingStream() {
-		var movieList = List.of(new Movie("b", 10), new Movie("a", 30), new Movie("c", 20));
+		var movieList = List.of(new Movie("b", 10, Genre.THRILLER), new Movie("a", 30, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 		movieList.stream().sorted((a, b) -> a.getTitle().compareTo(b.getTitle()))
 				.forEach(m -> System.out.println(m.getTitle()));
 		// .sorted(Comparator.comparing(Movie::getTitle))
@@ -45,7 +48,8 @@ public class StreamMain {
 	}
 
 	private static void sliceStream() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 30), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 30, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 
 		// limit(n)
 		movieList.stream().limit(2).forEach(m -> System.out.println(m.getTitle())); // a, b
@@ -62,7 +66,8 @@ public class StreamMain {
 	}
 
 	private static void filterStream() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 		Predicate<Movie> isPopular = m -> m.getLikes() > 10;
 		movieList.stream().filter(isPopular).forEach(m -> System.out.println(m.getTitle()));
 	}
@@ -75,7 +80,8 @@ public class StreamMain {
 	}
 
 	private static void mapStream() {
-		var movieList1 = Arrays.asList(new Movie("a", 10), new Movie("b", 20), new Movie("c", 30));
+		var movieList1 = Arrays.asList(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.THRILLER),
+				new Movie("c", 30, Genre.THRILLER));
 		movieList1.stream().map(m -> m.getTitle()).forEach(System.out::println);
 		movieList1.stream().mapToInt(m -> m.getLikes()).forEach(System.out::println);
 
@@ -111,7 +117,8 @@ public class StreamMain {
 	}
 
 	private static void stream1() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 
 		// Imperative Programming
 		System.out.println("***********");

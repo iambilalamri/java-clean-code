@@ -13,9 +13,21 @@ public class StreamReducersMain {
 	}
 
 	// ################_REDUCERS_######################
+	public static void grouping() {
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.ACTION),
+				new Movie("c", 30, Genre.ACTION));
+
+		// TYPE = Map<Genre, List<Movie>>
+		var movies = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre));
+		var moviesSetUniq = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
+		var moviesCounting = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.counting())); // {THRILLER=1,
+																														// ACTION=2}
+
+	}
 
 	public static void collection() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 20), new Movie("c", 30));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.THRILLER),
+				new Movie("c", 30, Genre.THRILLER));
 		var list1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toList());
 		var set1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toSet());
 		var map1 = movieList.stream().filter(m -> m.getLikes() > 10)
@@ -30,7 +42,8 @@ public class StreamReducersMain {
 
 	public static void reducer2() {
 		int identity = 0;
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 		Optional<Integer> optionalSum1 = movieList.stream().map(m -> m.getLikes()).reduce((a, b) -> a + b);
 		Optional<Integer> optionalSum2 = movieList.stream().map(m -> m.getLikes()).reduce(Integer::sum);
 		Integer sum3 = movieList.stream().map(m -> m.getLikes()).reduce(identity, Integer::sum);
@@ -41,7 +54,8 @@ public class StreamReducersMain {
 	}
 
 	public static void reducer1() {
-		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
+				new Movie("c", 20, Genre.THRILLER));
 		var length = movieList.stream().count();
 		System.out.println("LENGTH:" + length);
 
