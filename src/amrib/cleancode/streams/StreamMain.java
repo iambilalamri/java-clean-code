@@ -21,7 +21,12 @@ public class StreamMain {
 		sortingStream();
 	}
 
+	// ############_MANAGE_STREAMS_####################
+
 	private static void peekingElement() {
+		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		movieList.stream().filter(m -> m.getLikes() > 10).peek(m -> System.out.println("filtered:" + m.getTitle()))
+				.map(m -> m.getTitle()).peek(t -> System.out.println("Mapped:" + t)).forEach(System.out::println);
 	}
 
 	private static void uniqueElement() {
