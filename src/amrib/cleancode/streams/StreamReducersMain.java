@@ -22,6 +22,8 @@ public class StreamReducersMain {
 		var moviesSetUniq = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
 		var moviesCounting = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.counting())); // {THRILLER=1,
 																														// ACTION=2}
+		var moviesSetUniq = movieList.stream().collect(
+				Collectors.groupingBy(Movie::getGenre, Collectors.mapping(Movie::getTitle, Collectors.joining(", "))));
 
 	}
 
