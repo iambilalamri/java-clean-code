@@ -2,6 +2,9 @@ package amrib.cleancode.streams;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class StreamReducersMain {
 
@@ -10,6 +13,32 @@ public class StreamReducersMain {
 	}
 
 	// ################_REDUCERS_######################
+
+	public static void collection() {
+		var movieList = List.of(new Movie("a", 10), new Movie("b", 20), new Movie("c", 30));
+		var list1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toList());
+		var set1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toSet());
+		var map1 = movieList.stream().filter(m -> m.getLikes() > 10)
+				.collect(Collectors.toMap(m -> m.getTitle(), Movie::getLikes));
+		var sum = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.summingInt(Movie::getLikes));
+		var report = movieList.stream().filter(m -> m.getLikes() > 10)
+				.collect(Collectors.summarizingInt(Movie::getLikes));
+		var join = movieList.stream().filter(m -> m.getLikes() > 10).map(m -> m.getTitle())
+				.collect(Collectors.joining(" ,")); // b, c
+
+	}
+
+	public static void reducer2() {
+		int identity = 0;
+		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
+		Optional<Integer> optionalSum1 = movieList.stream().map(m -> m.getLikes()).reduce((a, b) -> a + b);
+		Optional<Integer> optionalSum2 = movieList.stream().map(m -> m.getLikes()).reduce(Integer::sum);
+		Integer sum3 = movieList.stream().map(m -> m.getLikes()).reduce(identity, Integer::sum);
+
+		System.out.println(optionalSum1.get());
+		System.out.println(optionalSum2.orElse(0));
+		System.out.println(sum3);
+	}
 
 	public static void reducer1() {
 		var movieList = List.of(new Movie("a", 10), new Movie("b", 15), new Movie("c", 20));
