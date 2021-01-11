@@ -17,6 +17,12 @@ public class StreamReducersMain {
 		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.ACTION),
 				new Movie("c", 30, Genre.ACTION));
 
+		// TYPE = Map<Genre, List<Movie>>
+		var movies = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre));
+		var moviesSetUniq = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
+		var moviesCounting = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.counting())); // {THRILLER=1,
+																														// ACTION=2}
+
 	}
 
 	public static void collection() {
