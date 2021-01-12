@@ -3,10 +3,12 @@ package amrib.cleancode.streams;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StreamReducersMain {
+
+	private static List<Movie> movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.ACTION),
+			new Movie("c", 30, Genre.ACTION));
 
 	public static void main(String[] args) {
 		reducer1();
@@ -14,9 +16,6 @@ public class StreamReducersMain {
 
 	// ################_REDUCERS_######################
 	public static void grouping() {
-		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.ACTION),
-				new Movie("c", 30, Genre.ACTION));
-
 		// TYPE = Map<Genre, List<Movie>>
 		var movies = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre));
 		var moviesSetUniq = movieList.stream().collect(Collectors.groupingBy(Movie::getGenre, Collectors.toSet()));
@@ -32,8 +31,7 @@ public class StreamReducersMain {
 	}
 
 	public static void collection() {
-		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 20, Genre.THRILLER),
-				new Movie("c", 30, Genre.THRILLER));
+
 		var list1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toList());
 		var set1 = movieList.stream().filter(m -> m.getLikes() > 10).collect(Collectors.toSet());
 		var map1 = movieList.stream().filter(m -> m.getLikes() > 10)
@@ -48,8 +46,7 @@ public class StreamReducersMain {
 
 	public static void reducer2() {
 		int identity = 0;
-		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
-				new Movie("c", 20, Genre.THRILLER));
+
 		Optional<Integer> optionalSum1 = movieList.stream().map(m -> m.getLikes()).reduce((a, b) -> a + b);
 		Optional<Integer> optionalSum2 = movieList.stream().map(m -> m.getLikes()).reduce(Integer::sum);
 		Integer sum3 = movieList.stream().map(m -> m.getLikes()).reduce(identity, Integer::sum);
@@ -60,8 +57,7 @@ public class StreamReducersMain {
 	}
 
 	public static void reducer1() {
-		var movieList = List.of(new Movie("a", 10, Genre.THRILLER), new Movie("b", 15, Genre.THRILLER),
-				new Movie("c", 20, Genre.THRILLER));
+
 		var length = movieList.stream().count();
 		System.out.println("LENGTH:" + length);
 
