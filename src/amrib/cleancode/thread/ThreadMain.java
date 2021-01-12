@@ -8,4 +8,17 @@ public class ThreadMain {
 		System.out.println(Runtime.getRuntime().availableProcessors());
 	}
 
+	public static void interruptThread() {
+	}
+
+	public static void joinThread() {
+	}
+
+	public static void pauseThread() {
+	}
+
+	public static void startThread() {
+		
+	}
+
 }
