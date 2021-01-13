@@ -16,4 +16,6 @@
 7. Thread Schudler: It decides which thread to run and how long
 
 ## Concurrency
-## 
+## Thread Safe
+1. Le code thread-safe est un code qui fonctionnera même si de nombreux threads l'exécutent simultanément.
+2. Un morceau de code est thread-safe s'il ne manipule que les structures de données partagées de manière à garantir une exécution sûre par plusieurs threads en même temps.

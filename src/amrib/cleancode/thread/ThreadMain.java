@@ -16,7 +16,7 @@ public class ThreadMain {
 		thread.start();
 
 		try {
-			// Permet au thread de terminer task(completion of task before use it)
+			// Permet au thread de terminer task (completion of task before use it)
 			thread.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
