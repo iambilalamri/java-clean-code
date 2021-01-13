@@ -13,5 +13,7 @@
 4. Tous les threads d’un processus partagent le même espace d’adressage que celui d’un processus.
 5. Les threads sont des tâches légères.
 6. Vous imprimez un fichier à partir d’un éditeur de texte tout en travaillant dessus, ce qui ressemble à l’exécution d’un thread dans le processus.
+7. Thread Schudler: It decides which thread to run and how long
 
 ## Concurrency
+## 

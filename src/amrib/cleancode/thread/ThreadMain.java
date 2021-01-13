@@ -3,9 +3,9 @@ package amrib.cleancode.thread;
 public class ThreadMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(Thread.activeCount());
-		System.out.println(Runtime.getRuntime().availableProcessors());
+		startThread();
+		// System.out.println(Thread.activeCount());
+		// System.out.println(Runtime.getRuntime().availableProcessors());
 	}
 
 	public static void interruptThread() {
@@ -18,7 +18,13 @@ public class ThreadMain {
 	}
 
 	public static void startThread() {
-		
+		System.out.println(Thread.currentThread().getName());
+		for (var i = 0; i < 10; i++) {
+			Thread thread1 = new Thread(new DownloadFileTask());
+			thread1.start();
+		}
+		// Thread thread2 = new Thread(new PlayMusicTask());
+		// thread2.start();
 	}
 
 }
