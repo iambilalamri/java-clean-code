@@ -12,9 +12,18 @@ public class ThreadMain {
 	}
 
 	public static void joinThread() {
-	}
+		Thread thread = new Thread(new DownloadFileTask());
+		thread.start();
 
-	public static void pauseThread() {
+		try {
+			// Permet au thread de terminer task(completion of task before use it)
+			thread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("FILE is ready to be scanned!");
 	}
 
 	public static void startThread() {
